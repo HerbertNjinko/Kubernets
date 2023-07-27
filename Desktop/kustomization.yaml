@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+secretGenerator:
+- name: mysql-secrets
+  literals:
+  - password=WordPass
+  - root_password=Password
+  - username=user
+
+resources: 
+  - my-configmap.yaml 
+  - mysql-deployment.yaml  
+  - wordpress-deployment.yaml
+  - phpmyadmin.yaml 
+
+
+
+
+  #kubectl apply -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.13.1/controller.yaml
+  #kustomize build . | kubectl apply -f -
